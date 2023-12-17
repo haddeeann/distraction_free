@@ -1,0 +1,24 @@
+/* Courses.css */
+.course-card {
+    border: 2px solid transparent; /* Transparent border initially */
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: transparent; /* Transparent background initially */
+    text-decoration: none;
+    display: block;
+    color: #333;
+    position: relative;
+    border-radius: 1em;
+}
+
+.course-card:hover {
+    animation-name: lavendar;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes lavendar {
+    100% {
+        background-color: lavender;
+    }
+}
