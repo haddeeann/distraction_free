@@ -13,9 +13,24 @@ function Courses({ supabase }) {
         }
 
         fetchData().then(data => {
-            setCourseList(data)
+            const courseList = data.filter(course => {
+                return course.creator !== "Patricia Green"
+            })
+            setCourseList(courseList)
         })
     }, [])
+
+    function createIFrame(course) {
+        const videoId = 'ua-CiDNNj30?si=ZF7CRhth9FDfwHW5'
+        const start = '3600'
+        return (
+            <iframe width="560" height="315"
+                    src={`https://www.youtube.com/embed/${videoId}&amp;start=${start}`}
+                    title="YouTube video player" frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen></iframe>
+        )
+    }
     return (
         <div>
             {courseList.map(course => (
@@ -39,15 +54,9 @@ function Courses({ supabase }) {
                         value={timeInput}
                         onChange={e => setTimeInput(e.target.value)}
                     />
-                    {course.url && course.url.includes('youtube') &&
-                        <div>
-                            <iframe width="560" height="315"
-                                    src="https://www.youtube.com/embed/ua-CiDNNj30?si=ZF7CRhth9FDfwHW5&amp;start=3600"
-                                    title="YouTube video player" frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen></iframe>
-                        </div>
-                    }
+                    <div>
+                        {createIFrame(course)}
+                    </div>
                 </div>
             ))}
         </div>
