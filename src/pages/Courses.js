@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './Courses.css';
+import CourseVideo from './CourseVideo'
 
 function Courses({ supabase }) {
     const [courseList, setCourseList] = useState([]);
@@ -34,7 +35,7 @@ function Courses({ supabase }) {
     return (
         <div>
             {courseList.map(course => (
-                <div>
+                <div key={course.id}>
                     <h2>{course.title}</h2>
                     <p><strong>Description:</strong> {course.description}</p>
                     <p><strong>Duration:</strong> {course.duration}</p>
@@ -54,9 +55,7 @@ function Courses({ supabase }) {
                         value={timeInput}
                         onChange={e => setTimeInput(e.target.value)}
                     />
-                    <div>
-                        {createIFrame(course)}
-                    </div>
+                    <CourseVideo videoId='ua-CiDNNj30?si=ZF7CRhth9FDfwHW5' />
                 </div>
             ))}
         </div>
