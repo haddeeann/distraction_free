@@ -41,20 +41,13 @@ function Courses({ supabase }) {
                     <p><strong>Duration:</strong> {course.duration}</p>
                     <p><strong>Creator:</strong> {course.creator}</p>
                     <p><strong>Current Progress:</strong> {course.current_progress}</p>
-                    <a
-                        key={course.id}
-                        href={course.url || "#"} // Use "#" as fallback for courses without a URL
-                        className='course-link'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                    >
-                        {course.url}
-                    </a>
-                    <button>Update Time</button>
-                    <input
-                        value={timeInput}
-                        onChange={e => setTimeInput(e.target.value)}
-                    />
+                    <div>
+                        <button>Update Times</button>
+                        <input
+                            value={timeInput}
+                            onChange={e => setTimeInput(e.target.value)}
+                        />
+                    </div>
                     <CourseVideo videoId='ua-CiDNNj30?si=ZF7CRhth9FDfwHW5' />
                 </div>
             ))}

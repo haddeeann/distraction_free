@@ -25,6 +25,9 @@ function CourseVideo({ videoId }) {
 
         // Function to handle player state change events
         function onPlayerStateChange(event) {
+            if (event.data === window.YT.PlayerState.PLAYING) {
+                console.log('playing')
+            }
             if (event.data === window.YT.PlayerState.PAUSED) {
                 console.log('paused')
             }
