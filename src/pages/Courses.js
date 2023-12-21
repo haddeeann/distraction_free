@@ -29,7 +29,7 @@ function Courses({ supabase }) {
                     <p><strong>Duration:</strong> {course.duration}</p>
                     <p><strong>Creator:</strong> {course.creator}</p>
                     <p><strong>Current Progress:</strong> {course.current_progress}</p>
-                    <CourseVideo course={course} />
+                    <CourseVideo course={course} supabase={supabase} />
                 </div>
             ))}
         </div>

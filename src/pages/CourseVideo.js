@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-function CourseVideo({ course }) {
-    const [hourInput, setHourInput] = useState(undefined);
-    const [minuteInput, setMinuteInput] = useState(undefined);
-    const [secondInput, setSecondInput] = useState(undefined);
+function CourseVideo({ course, supabase }) {
+    const [hourInput, setHourInput] = useState(0);
+    const [minuteInput, setMinuteInput] = useState(0);
+    const [secondInput, setSecondInput] = useState(0);
     const [totalSeconds, setTotalSeconds] = useState(0)
 
     useEffect(() => {
@@ -56,7 +56,7 @@ function CourseVideo({ course }) {
         };
     }, []);
 
-    const updateTime = () => {
+    const updateTime = async () => {
         let hours = 0
         let minutes = 0
         let seconds = 0
@@ -72,6 +72,10 @@ function CourseVideo({ course }) {
         const t = hours + minutes + seconds;
         if (hours || minutes || seconds) {
             setTotalSeconds(t)
+            const { error } = await supabase
+                .from('courses')
+                .update({ stopping_point: t })
+                .eq('id', 4)
         }
     }
 
