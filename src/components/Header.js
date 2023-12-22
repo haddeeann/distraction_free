@@ -11,7 +11,7 @@ function Header() {
                     </a>
                 </div>
                 <div className="logo-text-small">
-                    <a href="/">Distraction Free Data Science Videos</a>
+                    <a href="/">Distraction Free: Data Science Videos</a>
                 </div>
             </div>
         </header>
