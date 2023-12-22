@@ -17,7 +17,7 @@ function Courses({ supabase }) {
             })
             setCourseList(courseList)
         })
-    }, [])
+    }, [supabase])
 
     return (
         <div className='courses'>
