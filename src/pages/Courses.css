@@ -1,3 +1,7 @@
 .course-link {
     display: block;
 }
+
+.courses {
+    padding: 1em;
+}

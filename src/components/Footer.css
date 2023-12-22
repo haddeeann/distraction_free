@@ -1,0 +1,15 @@
+footer, .logo-text-small {
+    color: white;
+    font-size: 1em;
+    font-family: 'Major Mono Display', monospace;
+}
+.logo-text-large {
+    color: red;
+    font-weight: bold;
+}
+footer {
+    background-color: #cecece;
+    color: #fff; /* Footer text color */
+    text-align: center;
+    padding: 2em 1em;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import './Courses.css';
-import CourseVideo from './CourseVideo'
 
 function Courses({ supabase }) {
     const [courseList, setCourseList] = useState([]);
@@ -21,15 +20,18 @@ function Courses({ supabase }) {
     }, [])
 
     return (
-        <div>
+        <div className='courses'>
             {courseList.map(course => (
                 <div key={course.id}>
                     <h2>{course.title}</h2>
                     <p><strong>Description:</strong> {course.description}</p>
                     <p><strong>Duration:</strong> {course.duration}</p>
                     <p><strong>Creator:</strong> {course.creator}</p>
-                    <p><strong>Current Progress:</strong> {course.current_progress}</p>
-                    <CourseVideo course={course} supabase={supabase} />
+                    <iframe width="560" height="315" src={`https://www.youtube.com/embed/${course.video_id}`}
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen></iframe>
+                    <hr />
                 </div>
             ))}
         </div>
