@@ -8,7 +8,9 @@ function Courses({ supabase }) {
             const { data, error } = await supabase
                 .from('courses')
                 .select()
-            return data
+            if (!error) {
+                return data
+            }
         }
 
         fetchData().then(data => {
