@@ -21,6 +21,7 @@ function Courses({ supabase }) {
 
     return (
         <div className='courses'>
+            The list on YouTube <a href='https://www.youtube.com/watch?v=ua-CiDNNj30&list=PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1' target='_blank' rel='noreferrer'>Data Science List</a>
             {courseList.map(course => (
                 <div key={course.id}>
                     <h2>{course.title}</h2>
