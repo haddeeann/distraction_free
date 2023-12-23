@@ -1,11 +1,11 @@
 import React from 'react';
 
-function About() {
+function Python() {
     return (
         <div>
-            <h2>About</h2>
+            <h2>Python</h2>
         </div>
     );
 }
 
-export default About;
+export default Python;

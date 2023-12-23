@@ -20,16 +20,13 @@ function Header() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/">General Learning</Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/stats">Statistics</Link>
                     </li>
                     <li>
-                        <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/nothing-here">Nothing Here</Link>
+                        <Link to="/python">Python</Link>
                     </li>
                 </ul>
             </nav>
