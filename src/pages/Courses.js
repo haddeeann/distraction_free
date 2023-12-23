@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './Courses.css';
+import '../css/Courses.css';
 
 function Courses({ supabase }) {
     const [courseList, setCourseList] = useState([]);

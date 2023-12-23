@@ -1,5 +1,5 @@
 import mushroom_logo from '../images/mushroom_logo.jpg';
-import './Header.css';
+import '../css/Header.css';
 import { Link } from "react-router-dom";
 
 function Header() {

@@ -1,9 +1,10 @@
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Layout from './pages/Layout';
 import Stats from './pages/Stats';
 import Python from './pages/Python';
 import NoMatch from "./pages/NoMatch";
+import './css/App.css';
 
 export default function App() {
     return (
