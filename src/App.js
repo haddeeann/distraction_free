@@ -1,21 +1,38 @@
-import Courses from './pages/Courses';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { createClient } from '@supabase/supabase-js'
-import React from 'react';
-import './App.css'
+import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import Home from './pages/Home';
+import Layout from './pages/Layout';
+import About from './pages/About';
+import Dashboard from './pages/Dashboard';
+import NoMatch from "./pages/NoMatch";
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_URL, process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_ANON_KEY)
+export default function App() {
+    return (
+        <BrowserRouter>
+            <h1>Basic Example</h1>
 
-function App() {
-  return (
-    <div>
-        <Header />
-        <Courses supabase={supabase} />
-        <Footer />
-    </div>
-  );
+            <p>
+                This example demonstrates some of the core features of React Router
+                including nested <code>&lt;Route&gt;</code>s,{" "}
+                <code>&lt;Outlet&gt;</code>s, <code>&lt;Link&gt;</code>s, and using a
+                "*" route (aka "splat route") to render a "not found" page when someone
+                visits an unrecognized URL.
+            </p>
+
+            {/* Routes nest inside one another. Nested route paths build upon
+            parent route paths, and nested route elements render inside
+            parent route elements. See the note about <Outlet> below. */}
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+
+                    {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+                    <Route path="*" element={<NoMatch />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
-
-export default App;
