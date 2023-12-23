@@ -1,25 +1,45 @@
 import React, { useEffect, useState } from "react";
 import '../css/Courses.css';
+import { createClient } from '@supabase/supabase-js';
 
-function Courses({ supabase }) {
+
+function Courses({ topic }) {
     const [courseList, setCourseList] = useState([]);
+    const [supabase, setSupabase] = useState(null);
     useEffect(() => {
+        if (!supabase) {
+            // Create a single supabase client for interacting with your database
+            const supabase = createClient(process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_URL, process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_ANON_KEY);
+            setSupabase(supabase);
+        }
+
         async function fetchData () {
-            const { data, error } = await supabase
-                .from('courses')
-                .select()
-            if (!error) {
-                return data
+            const { data: categoriesData, error: categoriesError } = await supabase
+                .from('categories')
+                .select('id')
+                .eq('name', topic);
+            const categoryId = categoriesData[0]?.id; // Get the category id from the previous query
+
+            if (categoryId && !categoriesError) {
+                const { data: coursesData, error: coursesError } = await supabase
+                    .from('courses')
+                    .select()
+                    .eq('category', categoryId);
+                if (!coursesError) {
+                    return coursesData
+                }
             }
         }
 
-        fetchData().then(data => {
-            const courseList = data.filter(course => {
-                return course.creator !== "Patricia Green"
+        if (supabase && topic) {
+            fetchData().then(data => {
+                const courseList = data.filter(course => {
+                    return course.creator !== "Patricia Green"
+                })
+                setCourseList(courseList)
             })
-            setCourseList(courseList)
-        })
-    }, [supabase])
+        }
+    }, [topic, supabase])
 
     return (
         <div className='courses'>

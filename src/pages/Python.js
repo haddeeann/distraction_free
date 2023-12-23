@@ -1,9 +1,10 @@
 import React from 'react';
+import Courses from "./Courses";
 
 function Python() {
     return (
         <div>
-            <h2>Python</h2>
+            <Courses topic='Data Science Python' />
         </div>
     );
 }

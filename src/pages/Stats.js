@@ -1,8 +1,11 @@
 import React from 'react';
+import Courses from "./Courses";
 
 const Stats = () => {
     return (
-        <div>hello world stats</div>
+        <div>
+            <Courses topic='Data Science Statistics' />
+        </div>
     );
 }
 
