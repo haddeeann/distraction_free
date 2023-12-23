@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import '../css/Courses.css';
-import { createClient } from '@supabase/supabase-js';
+import supabase from '../supabase'
 
 
 function Courses({ topic }) {
     const [courseList, setCourseList] = useState([]);
-    const [supabase, setSupabase] = useState(null);
     useEffect(() => {
-        if (!supabase) {
-            // Create a single supabase client for interacting with your database
-            const supabase = createClient(process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_URL, process.env.REACT_APP_NEXT_PUBLIC_SUPABASE_ANON_KEY);
-            setSupabase(supabase);
-        }
-
         async function fetchData () {
             const { data: categoriesData, error: categoriesError } = await supabase
                 .from('categories')
@@ -28,24 +21,33 @@ function Courses({ topic }) {
                 if (!coursesError) {
                     return coursesData
                 }
+            } else {
+                const { data: coursesData, error: coursesError } = await supabase
+                    .from('courses')
+                    .select();
+                if (!coursesError) {
+                    return coursesData
+                }
             }
         }
 
         if (supabase && topic) {
             fetchData().then(data => {
-                const courseList = data.filter(course => {
-                    return course.creator !== "Patricia Green"
-                })
-                setCourseList(courseList)
+                if (data) {
+                    const courseList = data.filter(course => {
+                        return course.creator !== "Patricia Green"
+                    })
+                    setCourseList(courseList)
+                }
             })
         }
-    }, [topic, supabase])
+    }, [topic])
 
     return (
         <div className='courses'>
             The list on YouTube <a href='https://www.youtube.com/watch?v=ua-CiDNNj30&list=PLWKjhJtqVAblQe2CCWqV4Zy3LY01Z8aF1' target='_blank' rel='noreferrer'>Data Science List</a>
             {courseList.map(course => (
-                <div key={course.id} class='course'>
+                <div key={course.id} className='course'>
                     <h2>{course.title}</h2>
                     <p><strong>Description:</strong> {course.description}</p>
                     <p><strong>Duration:</strong> {course.duration}</p>
