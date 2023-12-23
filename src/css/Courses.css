@@ -1,7 +1,12 @@
 .course-link {
     display: block;
 }
-
 .courses {
     padding: 1em;
+}
+.course {
+    padding: 1em;
+}
+.course:not(:last-child) {
+    border-bottom: solid red 2px;
 }

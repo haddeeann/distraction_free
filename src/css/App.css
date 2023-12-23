@@ -3,3 +3,11 @@ body {
     padding: 0;
     min-height: 100vh; /* Set minimum height to ensure the footer stays at the bottom */
 }
+a {
+    color: red;
+    text-decoration: none;
+}
+a:hover {
+    color: inherit;
+    text-decoration: underline;
+}

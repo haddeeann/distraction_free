@@ -9,12 +9,10 @@ header {
     font-family: 'Major Mono Display', monospace;
     font-size: 1.35em;
 }
-
 #logo-container {
     display: flex;
     align-items: center;
 }
-
 .logo img {
     border-radius: 50%;
     border: 2px solid red;
@@ -29,4 +27,12 @@ header a:hover {
 }
 header a:active {
     color: red;
+}
+#nav-container div {
+    padding: .5em;
+    font-size: .75em;
+}
+.logo-text-small div  {
+    padding: .25em;
+    font-size: .75em;
 }
